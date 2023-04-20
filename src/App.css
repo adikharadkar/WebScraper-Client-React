@@ -1,6 +1,14 @@
 .App {
   text-align: center;
+  /* The image used */
+  
 }
+
+* {
+  font-family: 'PT Sans', sans-serif;
+}
+
+
 
 .App-logo {
   height: 40vmin;
