@@ -6,7 +6,6 @@ import RegistrationForm from './RegistrationForm';
 const RegistrationPage = () => {
     return (
         <div className="RegistrationPage">
-            <h1>Registration Page</h1>
             <RegistrationForm />
         </div>
     );
