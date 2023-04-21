@@ -1,24 +1,14 @@
-import React, { useState } from 'react';
+import React, {useState} from "react";
 import validator from 'validator';
 
-import InputField from '../InputField';
-import Label from '../Label';
-import Button from '../Button';
-import '../../Styles/RegistrationPage/RegistrationForm.css';
+import '../../Styles/LoginPage/LoginForm.css'
+import Button from "../Button";
+import InputField from "../InputField";
+import Label from "../Label";
 
-const RegistrationForm = () => {
-    const [errorUsername, setErrorUsername] = useState('');
+const LoginForm = () => {
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword1, setErrorPassword1] = useState('');
-
-    const checkUsernameHandler = (event) => {
-        let userInput = event.target.value;
-        if (userInput.length <= 0) {
-            setErrorUsername('Please enter a username');
-        } else {
-            setErrorUsername('');
-        }
-    }
 
     const checkEmailHandler = (event) => {
         let userInput = event.target.value;
@@ -48,19 +38,9 @@ const RegistrationForm = () => {
     }
 
     return (
-        <div className='RegistrationForm'>
+        <div className='LoginForm'>
             <form>
                 <ul>
-                    <li><Label inputText="Username" /></li>
-                    <li>
-                    <InputField
-                        type="text"
-                        name="username"
-                        placeholder="Enter Username"
-                        onChange={checkUsernameHandler}
-                    />
-                    </li>
-                    <li className='error'><span>{errorUsername}</span></li>
                     <li><Label inputText="Email ID" /></li>
                     <li>
                     <InputField
@@ -81,13 +61,14 @@ const RegistrationForm = () => {
                     />
                     </li>
                     <li className='error'><span>{errorPassword1}</span></li>
+                    <li className="forgotPassword"><p>Forgot Password ?</p></li>
                     
-                    <li><Button value="Create Account" /></li>
-                    <li className="loginLink"><p>Already have an account ? Log In</p></li>
+                    <li><Button value="Log In" /></li>
+                    <li className="signupLink"><p>Don't have an account ? Sign Up</p></li>
                 </ul>
             </form>
         </div>
     )
 }
 
-export default RegistrationForm;
+export default LoginForm;

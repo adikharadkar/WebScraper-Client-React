@@ -1,4 +1,4 @@
-.RegistrationForm {
+.LoginForm {
     text-align: left;
     display: inline-block;
     padding: 50px;
@@ -19,7 +19,12 @@ li {
     color: red;
 }
 
-.loginLink {
-    text-align: center;
+.forgotPassword {
+    text-align: right;
+    color:darkslateblue;
+}
+
+.signupLink {
     color: darkslateblue;
+    text-align: center;
 }
