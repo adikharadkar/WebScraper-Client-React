@@ -12,7 +12,3 @@
     transition-property: ease-out;
     border-radius: 5px;
 }
-
-.button:hover {
-    background-color: #FA8072;
-}
