@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import validator from 'validator';
+import { Link } from 'react-router-dom';
 
 import InputField from '../InputField';
 import Label from '../Label';
@@ -83,7 +84,7 @@ const RegistrationForm = () => {
                     <li className='error'><span>{errorPassword1}</span></li>
                     
                     <li><Button value="Create Account" /></li>
-                    <li className="loginLink"><p>Already have an account ? Log In</p></li>
+                    <li className="loginLink"><p>Already have an account ? <Link to='/login'>Log In</Link></p></li>
                 </ul>
             </form>
         </div>

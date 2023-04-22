@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import validator from 'validator';
+import { Link } from 'react-router-dom';
 
 import '../../Styles/LoginPage/LoginForm.css'
 import Button from "../Button";
@@ -64,7 +65,7 @@ const LoginForm = () => {
                     <li className="forgotPassword"><p>Forgot Password ?</p></li>
                     
                     <li><Button value="Log In" /></li>
-                    <li className="signupLink"><p>Don't have an account ? Sign Up</p></li>
+                    <li className="signupLink"><p>Don't have an account ? <Link to='/signup'>Sign Up</Link></p></li>
                 </ul>
             </form>
         </div>
