@@ -32,6 +32,8 @@ h1 {
     padding-left: 10px;
     border-radius: 10px;
     transition-duration: 0.4s;
+    color: darkslateblue;
+    display: inline-flex
 }
 
 .nav-link:hover {
@@ -39,6 +41,8 @@ h1 {
     background-color: darkslateblue;
 }
 
+
 .nav-title {
     text-decoration: none;
 }
+
