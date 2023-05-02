@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import HomePage from './Components/HomePage/HomePage';
 import LoginPage from './Components/LoginPage/LoginPage';
@@ -7,6 +8,9 @@ import NavigationBar from './Components/NavigationBar';
 import JobResultsPage from './Components/JobResultsPage/JobResultsPage';
 
 const AppRoutes = () => {
+    useEffect(() => {
+        document.title = 'Web Scraper';
+    }, []);
     return (
         <Router>
             <NavigationBar />
