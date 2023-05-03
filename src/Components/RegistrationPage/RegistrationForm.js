@@ -12,6 +12,8 @@ const RegistrationForm = () => {
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword1, setErrorPassword1] = useState('');
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const checkUsernameHandler = (event) => {
         let userInput = event.target.value;
@@ -23,11 +25,26 @@ const RegistrationForm = () => {
     }
 
     const postDataHandler = (event) => {
-        console.log(username)
+        const postData = {
+            username,
+            email,
+            password
+        }
+        if (errorEmail === '' && errorPassword1 === '' && errorUsername === '') {
+            console.log(postData);
+        }
     }
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
+    }
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
     }
 
     const checkEmailHandler = (event) => {
@@ -81,7 +98,11 @@ const RegistrationForm = () => {
                         type="email"
                         name="email"
                         placeholder="Enter Email ID"
-                        onChange={checkEmailHandler}
+                        value={email}
+                        onChange={(e) => {
+                            checkEmailHandler(e)
+                            handleEmailChange(e)
+                        }}
                     />
                     </li>
                     <li className='error'><span>{errorEmail}</span></li>
@@ -90,10 +111,11 @@ const RegistrationForm = () => {
                     <InputField
                         type="password"
                         name="password1"
+                        value={password}
                         placeholder="Enter Password"
                         onChange={(e) => {
                             checkPasswordHandler1(e)
-                            
+                            handlePasswordChange(e)
                         }}
                     />
                     </li>
