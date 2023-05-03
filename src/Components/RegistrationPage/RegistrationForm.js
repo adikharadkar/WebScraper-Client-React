@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import validator from 'validator';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import InputField from '../InputField';
 import Label from '../Label';
@@ -30,6 +31,8 @@ const RegistrationForm = () => {
     // Handler to send a POST request and send the user data to the backend
     const postDataHandler = (event) => {
 
+        event.preventDefault();
+
         // Store the user input in a dictionary
         const postData = {
             username,
@@ -39,7 +42,13 @@ const RegistrationForm = () => {
 
         // Send a POST request only when the user inputs are validated
         if (errorEmail === '' && errorPassword1 === '' && errorUsername === '') {
-            console.log(postData);
+            axios.post(`https://jsonplaceholder.typicode.com/posts`, postData)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
         }
     }
 
@@ -87,7 +96,7 @@ const RegistrationForm = () => {
 
     return (
         <div className='RegistrationForm'>
-            <form>
+            <form onSubmit={postDataHandler}>
                 <ul>
                     <li><Label inputText="Username" /></li>
                     <li>
@@ -132,7 +141,7 @@ const RegistrationForm = () => {
                     </li>
                     <li className='error'><span>{errorPassword1}</span></li>
                     
-                    <li><Button value="Create Account" onClick={postDataHandler} /></li>
+                    <li><Button value="Create Account" type="submit" /></li>
                     <li className="loginLink"><p>Already have an account ? <Link to='/login'>Log In</Link></p></li>
                 </ul>
             </form>
