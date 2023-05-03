@@ -11,6 +11,7 @@ const RegistrationForm = () => {
     const [errorUsername, setErrorUsername] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword1, setErrorPassword1] = useState('');
+    const [username, setUsername] = useState('');
 
     const checkUsernameHandler = (event) => {
         let userInput = event.target.value;
@@ -19,6 +20,14 @@ const RegistrationForm = () => {
         } else {
             setErrorUsername('');
         }
+    }
+
+    const postDataHandler = (event) => {
+        console.log(username)
+    }
+
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
     }
 
     const checkEmailHandler = (event) => {
@@ -58,7 +67,11 @@ const RegistrationForm = () => {
                         type="text"
                         name="username"
                         placeholder="Enter Username"
-                        onChange={checkUsernameHandler}
+                        onChange={(e) => {
+                            checkUsernameHandler(e)
+                            handleUsernameChange(e)
+                        }}
+                        value={username}
                     />
                     </li>
                     <li className='error'><span>{errorUsername}</span></li>
@@ -78,12 +91,15 @@ const RegistrationForm = () => {
                         type="password"
                         name="password1"
                         placeholder="Enter Password"
-                        onChange={checkPasswordHandler1}
+                        onChange={(e) => {
+                            checkPasswordHandler1(e)
+                            
+                        }}
                     />
                     </li>
                     <li className='error'><span>{errorPassword1}</span></li>
                     
-                    <li><Button value="Create Account" /></li>
+                    <li><Button value="Create Account" onClick={postDataHandler} /></li>
                     <li className="loginLink"><p>Already have an account ? <Link to='/login'>Log In</Link></p></li>
                 </ul>
             </form>

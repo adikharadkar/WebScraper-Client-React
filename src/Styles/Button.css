@@ -11,4 +11,5 @@
     transition-duration: 0.5s;
     transition-property: ease-out;
     border-radius: 5px;
+    text-align: center;
 }
