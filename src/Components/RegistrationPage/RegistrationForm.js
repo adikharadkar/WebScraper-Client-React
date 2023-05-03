@@ -8,6 +8,8 @@ import Button from '../Button';
 import '../../Styles/RegistrationPage/RegistrationForm.css';
 
 const RegistrationForm = () => {
+
+    // Handling the state of the respective components
     const [errorUsername, setErrorUsername] = useState('');
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword1, setErrorPassword1] = useState('');
@@ -15,6 +17,7 @@ const RegistrationForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // Handler to validate the username sent by the user
     const checkUsernameHandler = (event) => {
         let userInput = event.target.value;
         if (userInput.length <= 0) {
@@ -24,17 +27,23 @@ const RegistrationForm = () => {
         }
     }
 
+    // Handler to send a POST request and send the user data to the backend
     const postDataHandler = (event) => {
+
+        // Store the user input in a dictionary
         const postData = {
             username,
             email,
             password
         }
+
+        // Send a POST request only when the user inputs are validated
         if (errorEmail === '' && errorPassword1 === '' && errorUsername === '') {
             console.log(postData);
         }
     }
 
+    // Handlers to get the userinput for the respective fields
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     }
@@ -47,6 +56,7 @@ const RegistrationForm = () => {
         setPassword(event.target.value);
     }
 
+    // Handler to validate the email ID of user
     const checkEmailHandler = (event) => {
         let userInput = event.target.value;
         if (userInput.length <= 0) {
@@ -61,6 +71,7 @@ const RegistrationForm = () => {
         
     }
 
+    // Handler to validate the password of user
     const checkPasswordHandler1 = (event) => {
         let userInput = event.target.value;
         if (userInput.length <= 0) {
