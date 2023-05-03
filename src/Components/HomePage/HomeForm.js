@@ -49,7 +49,7 @@ const HomeForm = () => {
         }
 
         if (errorLocation === '' && errorPosition === '') {
-            axios.post(`https://jsonplaceholder.typicode.com/posts`, postData)
+            axios.post(`http://localhost:3001/`, postData)
                 .then((res) => {
                     console.log(res)
                 })

@@ -42,7 +42,9 @@ const RegistrationForm = () => {
 
         // Send a POST request only when the user inputs are validated
         if (errorEmail === '' && errorPassword1 === '' && errorUsername === '') {
-            axios.post(`https://jsonplaceholder.typicode.com/posts`, postData)
+            axios.post(`http://localhost:3001/signup`, JSON.stringify(postData), {
+                headers: { 'content-type': 'application/json', "access-control-allow-origin" : "*", },
+              })
                 .then((res) => {
                     console.log(res);
                 })

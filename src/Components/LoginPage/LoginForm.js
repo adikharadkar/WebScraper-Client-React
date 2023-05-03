@@ -63,7 +63,7 @@ const LoginForm = () => {
 
         // Send a POST request if the user input is validated
         if (errorEmail === '' && errorPassword1 === '') {
-            axios.post(`https://jsonplaceholder.typicode.com/posts`, postData)
+            axios.post(`http://localhost:3001/login`, postData)
                 .then((res) => {
                     console.log(res);
                 })
