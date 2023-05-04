@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import validator from 'validator';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import '../../Styles/LoginPage/LoginForm.css'
 import Button from "../Button";
@@ -10,6 +11,9 @@ import Label from "../Label";
 const LoginForm = () => {
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword1, setErrorPassword1] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
 
     const checkEmailHandler = (event) => {
         let userInput = event.target.value;
@@ -38,8 +42,39 @@ const LoginForm = () => {
         }
     }
 
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    }
+
+    const postDataHandler = (event) => {
+
+        // Preventing the app from re-rendering after sending a POST request
+        event.preventDefault();
+
+        // Store the user credentials in a dictionary
+        const postData = {
+            email,
+            password
+        }
+
+        // Send a POST request if the user input is validated
+        if (errorEmail === '' && errorPassword1 === '') {
+            axios.post(`http://localhost:3001/login`, postData)
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
+
     return (
-        <div className='LoginForm'>
+        <div className='LoginForm' onSubmit={postDataHandler}>
             <form>
                 <ul>
                     <li><Label inputText="Email ID" /></li>
@@ -48,7 +83,11 @@ const LoginForm = () => {
                         type="email"
                         name="email"
                         placeholder="Enter Email ID"
-                        onChange={checkEmailHandler}
+                        onChange={(e) => {
+                            checkEmailHandler(e)
+                            handleEmailChange(e)
+                        }}
+                        value={email}
                     />
                     </li>
                     <li className='error'><span>{errorEmail}</span></li>
@@ -58,13 +97,17 @@ const LoginForm = () => {
                         type="password"
                         name="password1"
                         placeholder="Enter Password"
-                        onChange={checkPasswordHandler1}
+                        onChange={(e) => {
+                            checkPasswordHandler1(e)
+                            handlePasswordChange(e)
+                        }}
+                        value={password}
                     />
                     </li>
                     <li className='error'><span>{errorPassword1}</span></li>
                     <li className="forgotPassword"><p>Forgot Password ?</p></li>
                     
-                    <li><Button value="Log In" /></li>
+                    <li><Button value="Log In" type="submit" /></li>
                     <li className="signupLink"><p>Don't have an account ? <Link to='/signup'>Sign Up</Link></p></li>
                 </ul>
             </form>
