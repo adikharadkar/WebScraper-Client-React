@@ -24,3 +24,10 @@ li {
     text-align: center;
     color: darkslateblue;
 }
+
+.message {
+    color: red;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+}
