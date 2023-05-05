@@ -17,3 +17,13 @@ input::placeholder {
 input:focus {
     outline: none;
 }
+
+@media (max-width: 600px) {
+    .inputField {
+        width: 180px;
+        font-size: 13px;
+    }
+    input::placeholder {
+        font-size: 13px;
+    }
+}
