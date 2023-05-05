@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import validator from 'validator';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import InputField from '../InputField';
@@ -19,6 +19,7 @@ const RegistrationForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const nav = useNavigate();
 
     // Handler to validate the username sent by the user
     const checkUsernameHandler = (event) => {
@@ -49,6 +50,7 @@ const RegistrationForm = () => {
               })
                 .then((res) => {
                     console.log(res);
+                    nav('/login');
                 })
                 .catch((err) => {
                     if (err.response.status === 500) {
