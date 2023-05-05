@@ -8,6 +8,7 @@ import Label from '../Label';
 import Button from '../Button';
 import '../../Styles/RegistrationPage/RegistrationForm.css';
 import ErrorMessage from '../ErrorMessage';
+import Modal from '../UI/Modal/Modal';
 
 const RegistrationForm = () => {
 
@@ -19,6 +20,7 @@ const RegistrationForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [clicked, setClicked] = useState(false);
     const nav = useNavigate();
 
     // Handler to validate the username sent by the user
@@ -58,7 +60,8 @@ const RegistrationForm = () => {
               })
                 .then((res) => {
                     console.log(res);
-                    nav('/login');
+                    setClicked(true);
+                    // nav('/login');
                 })
                 .catch((err) => {
                     if (err.response.status === 422) {
@@ -114,8 +117,17 @@ const RegistrationForm = () => {
         }
     }
 
+    const closeModalHandler = () => {
+        setClicked(false);
+    }
+
     return (
         <div>
+            <Modal show={clicked}>
+                <h2>Congratulations!!!</h2>
+                <h3>Your accound has been created!</h3>
+                <Button onClick={closeModalHandler} value="Close" />
+            </Modal>
             <ErrorMessage message={message} />
             <div className='RegistrationForm'>
             
