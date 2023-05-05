@@ -43,8 +43,16 @@ const RegistrationForm = () => {
             password
         }
 
+        if (username === '') {
+            setMessage('Please enter a username');
+        }else if (email === '') {
+            setMessage('Please enter an Email ID');
+        } else if (password === '') {
+            setMessage("Please enter a password")
+        }
+
         // Send a POST request only when the user inputs are validated
-        if (errorEmail === '' && errorPassword1 === '' && errorUsername === '') {
+        if (errorEmail === '' && errorPassword1 === '' && errorUsername === '' && email !== '' && username !== '' && password !== '') {
             axios.post(`http://localhost:3001/signup`, JSON.stringify(postData), {
                 headers: { 'content-type': 'application/json', "access-control-allow-origin" : "*", },
               })
@@ -53,9 +61,12 @@ const RegistrationForm = () => {
                     nav('/login');
                 })
                 .catch((err) => {
-                    if (err.response.status === 500) {
-                        setMessage('Account could not be created. Please try again!');
+                    if (err.response.status === 422) {
+                        setMessage('User already exists! Please enter another email address or login instead!');
                     }
+                    else if (err.response.status === 500) {
+                        setMessage('Account could not be created. Please try again!');
+                    } 
                     console.log(err);
                 })
         }

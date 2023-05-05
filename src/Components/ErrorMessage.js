@@ -4,7 +4,7 @@ import '../Styles/ErrorMessage.css';
 
 const ErrorMessage = (props) => {
     return (
-        <div className="errorDiv"><span className="errorMessage">{props.message}</span></div>
+        <div className={props.message ? "errorDiv": ""}><span className={props.message ? "errorMessage": ""}>{props.message}</span></div>
     )
 }
 
