@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 import '../../Styles/HomePage/HomeForm.css';
@@ -12,6 +13,7 @@ const HomeForm = () => {
     const [errorLocation, setErrorLocation] = useState('');
     const [jobPosition, setJobPosition] = useState('');
     const [jobLocation, setJobLocation] = useState('');
+    const navigate = useNavigate()
 
     const checkSearchPositionHandler = (event) => {
         let userInput = event.target.value;
@@ -52,6 +54,7 @@ const HomeForm = () => {
             axios.post(`http://localhost:5000/`, postData)
                 .then((res) => {
                     console.log(res)
+                    navigate('/job-results', {state: {data: res.data}})
                 })
                 .catch((err) => {
                     console.log(err)

@@ -12,7 +12,6 @@ const NavigationBar = () => {
                 <Link to="/" className="nav-link">
                     <h2>Search Jobs</h2>
                 </Link>
-                <Link to='/job-results' className='nav-link'><h2>Job Results</h2></Link>
                 <Link to="/login" className="nav-link"><h2>Log In</h2></Link>
                 <Link to="/signup" className="nav-link"><h2>Create Account</h2></Link>
             </div>
