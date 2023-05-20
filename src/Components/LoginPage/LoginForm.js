@@ -50,7 +50,7 @@ const LoginForm = () => {
         setPassword(event.target.value);
     }
 
-    const postDataHandler = (event) => {
+    const postDataHandler = async (event) => {
 
         // Preventing the app from re-rendering after sending a POST request
         event.preventDefault();
@@ -63,6 +63,15 @@ const LoginForm = () => {
 
         // Send a POST request if the user input is validated
         if (errorEmail === '' && errorPassword1 === '') {
+
+            // fetch('http://localhost:3001/login', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(postData)
+            // });
+
             axios.post(`http://localhost:3001/login`, postData)
                 .then((res) => {
                     console.log(res);
