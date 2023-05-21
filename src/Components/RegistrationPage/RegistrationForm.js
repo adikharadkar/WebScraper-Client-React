@@ -21,7 +21,7 @@ const RegistrationForm = () => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [clicked, setClicked] = useState(false);
-    const nav = useNavigate();
+    const navigate = useNavigate();
 
     // Handler to validate the username sent by the user
     const checkUsernameHandler = (event) => {
@@ -59,9 +59,11 @@ const RegistrationForm = () => {
                 headers: { 'content-type': 'application/json', "access-control-allow-origin" : "*", },
               })
                 .then((res) => {
-                    console.log(res);
+                    console.log(res.data.token);
                     setClicked(true);
-                    // nav('/login');
+                    localStorage.setItem('Token', res.data.token)
+                    navigate('/');
+                    
                 })
                 .catch((err) => {
                     if (err.response.status === 422) {
