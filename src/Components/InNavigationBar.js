@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 
 import '../Styles/NavigationBar.css';
 
-const NavigationBar = () => {
+const InNavigationBar = () => {
+
+    const LogoutHandler = () => {
+        localStorage.removeItem('Token')
+    }
     
     return (
         <nav>
@@ -13,8 +17,7 @@ const NavigationBar = () => {
                 <Link to="/" className="nav-link">
                     <h2>Search Jobs</h2>
                 </Link>
-                <Link to="/login" className="nav-link"><h2>Log In</h2></Link>
-                <Link to="/signup" className="nav-link"><h2>Create Account</h2></Link>
+                <Link to="/logout" className="nav-link" onClick={LogoutHandler}><h2>Logout</h2></Link>
             </div>
             </header>
         </nav>
@@ -22,4 +25,4 @@ const NavigationBar = () => {
     
 }
 
-export default NavigationBar;
+export default InNavigationBar;

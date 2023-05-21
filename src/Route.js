@@ -1,24 +1,31 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import HomePage from './Components/HomePage/HomePage';
 import LoginPage from './Components/LoginPage/LoginPage';
 import RegistrationPage from './Components/RegistrationPage/RegistrationPage';
 import NavigationBar from './Components/NavigationBar';
 import JobResultsPage from './Components/JobResultsPage/JobResultsPage';
+import InNavigationBar from './Components/InNavigationBar';
+import Logout from './Components/LogoutPage/Logout';
 
 const AppRoutes = () => {
+    const [jwtToken, setJwtToken] = useState(false)
     useEffect(() => {
-        document.title = 'Web Scraper';
-    }, []);
+        if(localStorage.getItem('Token')) {
+            setJwtToken(true)
+        }
+    }, [jwtToken])
     return (
         <Router>
-            <NavigationBar />
+            {jwtToken ? <InNavigationBar /> : <NavigationBar />}
+            
             <Routes>
-                <Route exact path="/" element={<HomePage />} />
-                <Route exact path="/login" element={<LoginPage />} />
-                <Route exact path="/signup" element={<RegistrationPage />} />
-                <Route exact path="/job-results" element={<JobResultsPage />} />
+                <Route exact path="/" Component={() => <HomePage />} />
+                <Route exact path="/login" Component={() => <LoginPage />} />
+                <Route exact path="/signup" Component={() => <RegistrationPage />} />
+                <Route exact path="/job-results" Component={() => <JobResultsPage />} />
+                <Route exact path="/logout" Component={() => <Logout />} />
             </Routes>
         </Router>
     );
