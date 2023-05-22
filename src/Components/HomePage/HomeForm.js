@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,7 +13,17 @@ const HomeForm = () => {
     const [errorLocation, setErrorLocation] = useState('');
     const [jobPosition, setJobPosition] = useState('');
     const [jobLocation, setJobLocation] = useState('');
+    const [jwtToken, setJwtToken] = useState('');
     const navigate = useNavigate()
+    
+    useEffect(() => {
+        if(localStorage.getItem('Token')) {
+            let token = localStorage.getItem('Token');
+            setJwtToken(token)
+        } else {
+            navigate('/login')
+        }
+    }, [jwtToken, navigate])
 
     const checkSearchPositionHandler = (event) => {
         let userInput = event.target.value;

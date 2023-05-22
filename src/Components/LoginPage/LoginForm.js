@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import validator from 'validator';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import '../../Styles/LoginPage/LoginForm.css'
@@ -13,7 +13,16 @@ const LoginForm = () => {
     const [errorPassword1, setErrorPassword1] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [jwtToken, setJwtToken] = useState('');
+    const navigate = useNavigate()
 
+    useEffect(() => {
+        if(localStorage.getItem('Token')) {
+            let token = localStorage.getItem('Token');
+            setJwtToken(token)
+            navigate('/')
+        }
+    }, [jwtToken, navigate])
 
     const checkEmailHandler = (event) => {
         let userInput = event.target.value;
@@ -60,6 +69,7 @@ const LoginForm = () => {
             email,
             password
         }
+        console.log(postData)
 
         // Send a POST request if the user input is validated
         if (errorEmail === '' && errorPassword1 === '') {
@@ -75,6 +85,8 @@ const LoginForm = () => {
             axios.post(`http://localhost:3001/login`, postData)
                 .then((res) => {
                     console.log(res);
+                    localStorage.setItem('Token', res.data.token)
+                    navigate('/');
                 })
                 .catch((err) => {
                     console.log(err)

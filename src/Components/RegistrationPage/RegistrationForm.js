@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import validator from 'validator';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -21,7 +21,16 @@ const RegistrationForm = () => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [clicked, setClicked] = useState(false);
-    const navigate = useNavigate();
+    const [jwtToken, setJwtToken] = useState('');
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(localStorage.getItem('Token')) {
+            let token = localStorage.getItem('Token');
+            setJwtToken(token)
+            navigate('/')
+        }
+    }, [jwtToken, navigate])
 
     // Handler to validate the username sent by the user
     const checkUsernameHandler = (event) => {
